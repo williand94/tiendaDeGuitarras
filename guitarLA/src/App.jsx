@@ -7,6 +7,27 @@ import { db } from "./data/db.js";
 function App() {
   const [data, setData] = useState(db);
   const [car, setCar]   = useState([]);
+
+  function addToCar(item) {
+   
+    const itemExist = car.findIndex(guitar => guitar.id === item.id)
+    console.log(itemExist);
+    //itemExist >= 0 ? console.log("Already added this element...."): item.quantity =1; setCar([...car,item])
+    
+    if (itemExist >= 0){
+        console.log(car,"test");
+        const updatedCar = [...car]
+        updatedCar[itemExist].quantity++ 
+        setCar(updatedCar)
+      
+    }else{
+      item.quantity = 1 ; 
+      setCar([...car,item])
+    }
+  
+  }
+
+
   return (
     <>
       <Header />
@@ -18,6 +39,7 @@ function App() {
               key={guitar.id}
               guitar={guitar}
               setCar={setCar}
+              addToCar={addToCar}
             
              
             />
